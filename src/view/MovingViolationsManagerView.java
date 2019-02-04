@@ -12,7 +12,7 @@ public class MovingViolationsManagerView
 	{
 		Scanner sc = new Scanner(System.in);
 		boolean fin=false;
-		while(!fin)
+		while(!fin) 
 		{
 			printMenu();
 			

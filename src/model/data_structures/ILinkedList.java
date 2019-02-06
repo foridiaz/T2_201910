@@ -15,18 +15,18 @@ public interface ILinkedList<T> extends Iterable<T> {
 	
 	void addAtEnd (T nuevo);
 	
-	void addAtK(T nuevo);
+	void addAtK(T nuevo, int pos);
 	
-	public T getElement(int pos);
+	T getElement(int pos);
 	
-	public T getCurrentElement();
+	T getCurrentElement();
 	
-	void delate (T borrar); 
+	void delate (); 
 	
-	void deleteAtK (T borrar); 
+	void deleteAtK ( int pId); 
 	
-	public T next();
-	
-	public T previous(); 
+//	public  Nodo<T> next() throws Exception;
+//	
+//	public Nodo<T> previous() throws Exception; 
 
 }

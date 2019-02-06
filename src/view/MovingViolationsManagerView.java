@@ -1,5 +1,6 @@
 package view;
 
+import java.util.LinkedList;
 import java.util.Scanner;
 
 import controller.Controller;

@@ -4,14 +4,15 @@ import java.util.Iterator;
 
 import javafx.animation.Interpolator;
 
-public class LinkedList<T> implements ILinkedList<T> {
+public class LinkedList<T> implements ILinkedList<T> 
+{
 
 	private Nodo<T> primero;
 
 	private int size; 
 
 	private Nodo<T> ultimo;
-	
+
 	private Nodo<T> actual; 
 
 	public LinkedList() {
@@ -21,8 +22,8 @@ public class LinkedList<T> implements ILinkedList<T> {
 		actual=null;
 	}
 
-	public Iterator<T> iterator() {
-		return new IteratorList<T>(primero);		
+	public IteratorList<T> iterator() {
+		return new IteratorList<T>(primero);  
 	}
 
 	public Integer getSize() {
@@ -41,7 +42,7 @@ public class LinkedList<T> implements ILinkedList<T> {
 			primero.setPrevious(aAgregar);
 			if(size==1) {
 				ultimo.setPrevious(primero);
-			}	
+			} 
 			primero=aAgregar;
 		}
 		size++;
@@ -61,25 +62,45 @@ public class LinkedList<T> implements ILinkedList<T> {
 
 	}
 
+	/**
+	 * Método que crea un nodo en la posición n
+	 * @param nuevo != null
+	 * @param pos !=null y en una posición posible
+	 */
 	@Override
-	public void addAtK(T nuevo, int pos) {
+	public void addAtK(T nuevo, int pos)
+	{
 		Nodo<T> aAgregar= new Nodo(nuevo);
-		int actual=1; 
-		Nodo<T> nodoactual=primero; 
-		while(actual<=pos) {
-			if(actual==pos) {
-				nodoactual.getNext().setPrevious(aAgregar);
-				aAgregar.setNext(nodoactual.getNext());
-				aAgregar.setPrevious(nodoactual);
-				nodoactual.setNext(aAgregar);
-			}
-			nodoactual=nodoactual.getNext();
-			actual++;
-		}
-		size++;
+		Nodo<T> nodoactual=getNode(pos); //Nodo anterior a la posición del nuevo nodo
+		nodoactual.setPrevious(aAgregar);
+		aAgregar.setPrevious(nodoactual.getPrevious());
+		aAgregar.setNext(nodoactual);
+		nodoactual.getPrevious().setNext(aAgregar);
 	}
 
 	/**
+	 * Método que retorna el nodo en la posición n
+	 * @return elNodo (se asume que existe la posición de entrada)
+	 */
+
+	public Nodo<T> getNode(int pos)
+	{
+		Nodo<T> elNodo = primero;
+		Nodo<T> nodoActual = primero;
+		int posicionActual = 0;
+		while(posicionActual <= pos)
+		{
+			if(posicionActual==pos)
+			{
+				elNodo = nodoActual;
+			}
+			nodoActual = nodoActual.getNext();
+			posicionActual++;
+		}
+		return  elNodo;
+	}
+	/**
+	 * Método que retorna el elemento en la posición n
 	 * Se asume que pos<=size
 	 */
 	public T getElement(int pos) {
@@ -107,33 +128,60 @@ public class LinkedList<T> implements ILinkedList<T> {
 		primero=primero.getNext();
 		size--;
 	}
+	/**
+	 * Método que elimina el elemento en la posición n
+	 * Se asume que pos<=size y pos>1
+	 */
 
 	@Override
 	public void deleteAtK(int pos) {
 		// TODO Auto-generated method stub
 		Iterator<T> iterator=iterator();
+
 		int ahora=0;
-		if()
+		if(size!=0)
+		{
+			if(size==1)
+			{
+				primero = null;
+			}
+			else
+			{
+				Nodo<T> eliminando = getNode(pos);
+				if(pos==(size+1))
+				{
+					ultimo= eliminando.getPrevious();
+					eliminando.getPrevious().setNext(primero);
+				}
+				else
+				{
+					Nodo<T> anterior = eliminando.getPrevious();
+					Nodo<T> posterior = eliminando.getNext();
+					posterior.setPrevious(anterior);
+					anterior.setNext(posterior);
+				}
+			}
+		}
 
 	}
 
 	//@Override
 	//public Nodo<T> next() throws Exception {
-	//	if(actual==null) {
-	//		throw new Exception("La lista se encuentra vacia");
-	//	}
-	//	else{
-	//		return actual.getNext();
-	//	}
+	// if(actual==null) {
+	//  throw new Exception("La lista se encuentra vacia");
+	// }
+	// else{
+	//  return actual.getNext();
+	// }
 	//}
 	//
 	//@Override
 	//public Nodo<T> previous() throws Exception{
-	//	if(actual==null) {
-	//		throw new Exception("La lista esta vacia");
-	//	}
-	//	else
-	//		return actual.getPrevious();
+	// if(actual==null) {
+	//  throw new Exception("La lista esta vacia");
+	// }
+	// else
+	//  return actual.getPrevious();
 	//}
 
 }

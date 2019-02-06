@@ -1,10 +1,9 @@
 package view;
 
-import java.util.LinkedList;
+import model.data_structures.LinkedList;
 import java.util.Scanner;
 
 import controller.Controller;
-import model.data_structures.ILinkedList;
 import model.vo.VOMovingViolations;
 
 public class MovingViolationsManagerView 

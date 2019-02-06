@@ -11,14 +11,16 @@ public class VOMovingViolations {
 	private int totalpaid; 
 	private String accidenIndicator; 
 	private String description; 
+	private String violationcode; 
 
-	public VOMovingViolations(int pId, String pLocation, String pTicketIssueDate, int pTotoalpaid, String pAccidentIndicator, String pDescription){
+	public VOMovingViolations(int pId, String pLocation, String pTicketIssueDate, int pTotoalpaid, String pAccidentIndicator, String pDescription, String pViolationCode){
 		Id=pId;
 		location=pLocation;
 		ticketIssueDate=pTicketIssueDate;
 		totalpaid=pTotoalpaid;
 		accidenIndicator=pAccidentIndicator;
-		description=pDescription; 				
+		description=pDescription; 		
+		violationcode=pViolationCode; 
 	}
 	
 	
@@ -69,5 +71,8 @@ public class VOMovingViolations {
 	public String  getViolationDescription() {
 		// TODO Auto-generated method stub
 		return description;
+	}
+	public String getViolationCode(){
+		return violationcode;
 	}
 }

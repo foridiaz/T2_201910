@@ -2,6 +2,8 @@ package model.data_structures;
 
 import java.util.Iterator;
 
+import javafx.animation.Interpolator;
+
 public class LinkedList<T> implements ILinkedList<T> {
 
 	private Nodo<T> primero;
@@ -9,11 +11,14 @@ public class LinkedList<T> implements ILinkedList<T> {
 	private int size; 
 
 	private Nodo<T> ultimo;
+	
+	private Nodo<T> actual; 
 
 	public LinkedList() {
 		primero=null; 
 		ultimo=null; 
 		size=0;
+		actual=null;
 	}
 
 	public Iterator<T> iterator() {
@@ -30,6 +35,7 @@ public class LinkedList<T> implements ILinkedList<T> {
 		if(primero==null) {
 			primero= aAgregar; 
 			ultimo=aAgregar; 
+			actual=aAgregar; 
 		}else {
 			aAgregar.setNext(primero);
 			primero.setPrevious(aAgregar);
@@ -70,7 +76,7 @@ public class LinkedList<T> implements ILinkedList<T> {
 			nodoactual=nodoactual.getNext();
 			actual++;
 		}
-
+		size++;
 	}
 
 	/**
@@ -78,33 +84,36 @@ public class LinkedList<T> implements ILinkedList<T> {
 	 */
 	public T getElement(int pos) {
 		Iterator<T> iterator=iterator();
-		int actual=1; 
+		int ahora=0; 
 		T retornar=null;
 		while(iterator.hasNext()) {
 			retornar=(T)iterator.next();
-			if(actual==pos) {
+			if(ahora==pos) {
 				break;
 			}
-			actual++;
+			ahora++;
 		}
 		return retornar; 
 	}
 
 	@Override
 	public T getCurrentElement() {
-		// TODO Auto-generated method stub
-		return null;
+		return actual.getElement(); 
 	}
 
 	@Override
 	public void delate() {
 		primero.getNext().setPrevious(null);
 		primero=primero.getNext();
+		size--;
 	}
 
 	@Override
-	public void deleteAtK(int pId) {
+	public void deleteAtK(int pos) {
 		// TODO Auto-generated method stub
+		Iterator<T> iterator=iterator();
+		int ahora=0;
+		if()
 
 	}
 

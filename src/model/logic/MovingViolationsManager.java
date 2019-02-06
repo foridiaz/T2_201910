@@ -3,13 +3,13 @@ package model.logic;
 import api.IMovingViolationsManager;
 import model.vo.VOMovingViolations;
 import model.data_structures.LinkedList;
-
+import opencsv
 public class MovingViolationsManager implements IMovingViolationsManager {
 
 	
 	public void loadMovingViolations(String movingViolationsFile){
 		// TODO Auto-generated method stub
-		
+		CSVReader reader=null; 
 	}
 
 		
